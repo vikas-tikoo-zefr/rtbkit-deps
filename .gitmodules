@@ -46,3 +46,6 @@
 [submodule "curlpp"]
 	path = curlpp
 	url = https://github.com/mikeburkat/curlpp.git
+[submodule "gperftools"]
+	path = gperftools
+	url = https://github.com/mikeburkat/gperftools.git
