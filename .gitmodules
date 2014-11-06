@@ -7,9 +7,6 @@
 [submodule "cityhash"]
 	path = cityhash
 	url = https://github.com/jeremybarnes/cityhash.git
-[submodule "curlpp"]
-	path = curlpp
-	url = https://github.com/datacratic/curlpp.git
 [submodule "gperftools"]
 	path = gperftools
 	url = https://github.com/datacratic/gperftools.git
@@ -49,3 +46,6 @@
 [submodule "curl"]
 	path = curl
 	url = https://github.com/mikeburkat/curl.git
+[submodule "curlpp"]
+	path = curlpp
+	url = https://github.com/mikeburkat/curlpp.git
