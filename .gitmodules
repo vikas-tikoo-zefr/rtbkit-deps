@@ -7,9 +7,6 @@
 [submodule "cityhash"]
 	path = cityhash
 	url = https://github.com/jeremybarnes/cityhash.git
-[submodule "curl"]
-	path = curl
-	url = https://github.com/bagder/curl.git
 [submodule "curlpp"]
 	path = curlpp
 	url = https://github.com/datacratic/curlpp.git
@@ -39,7 +36,7 @@
 	url = https://github.com/datacratic/redis.git
 [submodule "snappy"]
 	path = snappy
-	url = https://github.com/datacratic/snappy.git
+	url = https://github.com/mikeburkat/snappy.git
 [submodule "userspace-rcu"]
 	path = userspace-rcu
 	url = https://github.com/datacratic/userspace-rcu.git
