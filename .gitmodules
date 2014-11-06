@@ -7,9 +7,6 @@
 [submodule "cityhash"]
 	path = cityhash
 	url = https://github.com/jeremybarnes/cityhash.git
-[submodule "gperftools"]
-	path = gperftools
-	url = https://github.com/datacratic/gperftools.git
 [submodule "hiredis"]
 	path = hiredis
 	url = https://github.com/redis/hiredis.git
