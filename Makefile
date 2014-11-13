@@ -5,10 +5,9 @@ TARGET?=$(HOME)/local
 # Determines the number of parallel jobs that will be used to build each of the submodules
 JOBS?=4
 
+all: install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_zookeeper install_redis
 
-all: install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_gperftools install_zookeeper install_redis
-
-.PHONY: install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_gperftools install_zookeeper install_redis
+.PHONY: install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_zookeeper install_redis
 
 install_node:
 	JOBS=$(JOBS) cd node && ./recoset_build_node.sh
