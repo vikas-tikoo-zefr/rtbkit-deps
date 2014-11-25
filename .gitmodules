@@ -10,9 +10,6 @@
 [submodule "hiredis"]
 	path = hiredis
 	url = https://github.com/redis/hiredis.git
-[submodule "jq"]
-	path = jq
-	url = https://github.com/stedolan/jq.git
 [submodule "libssh2"]
 	path = libssh2
 	url = https://github.com/datacratic/libssh2.git

@@ -62,9 +62,6 @@ install_zookeeper:
 install_redis:
 	cd redis && make -j$(JOBS) -k PREFIX=$(TARGET) install
 
-install_jq:
-	cd jq && make -k install prefix=$(TARGET)
-
 install_cairomm:
 	cd cairomm && ./autogen.sh && ./configure --prefix=$(TARGET) && make install
 
