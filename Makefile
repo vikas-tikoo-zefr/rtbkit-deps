@@ -13,8 +13,8 @@ install_node:
 	JOBS=$(JOBS) cd node && ./recoset_build_node.sh
 
 install_boost:
-	if [ ! -f boost_1_57_0/b2 ] ; then cd boost_1_56_0 && ./bootstrap.sh --prefix=$(TARGET) ; fi
-	cd boost_1_56_0 && ./bjam include=/usr/lib && ./b2 -j$(JOBS) variant=release link=shared threading=multi runtime-link=shared toolset=gcc --without=graph --without-graph_parallel --without-mpi install
+	if [ ! -f boost_1_57_0/b2 ] ; then cd boost_1_57_0 && ./bootstrap.sh --prefix=$(TARGET) ; fi
+	cd boost_1_57_0 && ./bjam include=/usr/lib && ./b2 -j$(JOBS) variant=release link=shared threading=multi runtime-link=shared toolset=gcc --without=graph --without-graph_parallel --without-mpi install
 clean_boost:
 	cd boost_1_57_0 && rm -rf ./b2 ./bin.v2 ./bjam ./bootstrap.log ./project-config.jam ./tools/build/v2/engine/bootstrap/ ./tools/build/v2/engine/bin.linuxx86_64/
 
