@@ -16,9 +16,6 @@
 [submodule "libssh2"]
 	path = libssh2
 	url = https://github.com/datacratic/libssh2.git
-[submodule "mongo-cxx-driver"]
-	path = mongo-cxx-driver
-	url = https://github.com/datacratic/mongo-cxx-driver.git
 [submodule "node"]
 	path = node
 	url = https://github.com/datacratic/node.git
@@ -46,6 +43,3 @@
 [submodule "curlpp"]
 	path = curlpp
 	url = https://github.com/mikeburkat/curlpp.git
-[submodule "gperftools"]
-	path = gperftools
-	url = https://github.com/mikeburkat/gperftools.git

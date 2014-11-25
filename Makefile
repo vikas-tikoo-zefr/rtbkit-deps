@@ -13,10 +13,10 @@ install_node:
 	JOBS=$(JOBS) cd node && ./recoset_build_node.sh
 
 install_boost:
-	if [ ! -f boost_1_56_0/b2 ] ; then cd boost_1_56_0 && ./bootstrap.sh --prefix=$(TARGET) ; fi
+	if [ ! -f boost_1_57_0/b2 ] ; then cd boost_1_56_0 && ./bootstrap.sh --prefix=$(TARGET) ; fi
 	cd boost_1_56_0 && ./bjam include=/usr/lib && ./b2 -j$(JOBS) variant=release link=shared threading=multi runtime-link=shared toolset=gcc --without=graph --without-graph_parallel --without-mpi install
 clean_boost:
-	cd boost_1_56_0 && rm -rf ./b2 ./bin.v2 ./bjam ./bootstrap.log ./project-config.jam ./tools/build/v2/engine/bootstrap/ ./tools/build/v2/engine/bin.linuxx86_64/
+	cd boost_1_57_0 && rm -rf ./b2 ./bin.v2 ./bjam ./bootstrap.log ./project-config.jam ./tools/build/v2/engine/bootstrap/ ./tools/build/v2/engine/bin.linuxx86_64/
 
 install_userspacercu:
 	cd userspace-rcu/ && ./bootstrap && ./configure --prefix=$(TARGET) && make install
@@ -56,18 +56,11 @@ install_curlpp:
 	cp curlpp/include/curlpp/config.h $(TARGET)/include/curlpp/config.h
 	echo '#include "curlpp/config.h"' > $(TARGET)/include/curlpp/internal/global.h
 
-install_gperftools:
-	cd gperftools && ./configure --prefix $(TARGET) --enable-frame-pointers && make all CXXFLAGS="-g -O3" && make install
-
 install_zookeeper:
 	cd zookeeper && (ulimit -v unlimited; JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/ ant compile) && cd src/c && autoreconf -if && ./configure --prefix $(TARGET) && make -j$(JOBS) -k install && make doxygen-doc && rm -f ~/local/bin/zookeeper && cd ../.. && ln -s `pwd` ~/local/bin/zookeeper
 
 install_redis:
 	cd redis && make -j$(JOBS) -k PREFIX=$(TARGET) install
-
-install_mongodb_cxx_driver:
-	rm -rf $(TARGET)/include/mongo
-	cd mongo-cxx-driver && scons -j$(JOBS) install --prefix $(TARGET)
 
 install_jq:
 	cd jq && make -k install prefix=$(TARGET)
