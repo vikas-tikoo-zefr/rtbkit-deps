@@ -5,16 +5,27 @@ TARGET?=$(HOME)/local
 # Determines the number of parallel jobs that will be used to build each of the submodules
 JOBS?=4
 
-all: install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_zookeeper install_redis
+#determine if node js is used, if using ubuntu 14 it should be disabled
+NODEJS_ENABLED := 1
 
-.PHONY: install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_zookeeper install_redis
+all: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_zookeeper install_redis
+
+.PHONY: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_zookeeper install_redis
 
 install_node:
-	JOBS=$(JOBS) cd node && ./recoset_build_node.sh
+	if [ $(NODEJS_ENABLED) = 1 ]; \
+	then \
+		echo "node js enabled" && \
+		JOBS=$(JOBS) cd node && \
+		./recoset_build_node.sh;\
+	else \
+		echo "node js disabled"; \
+	fi
 
 install_boost:
 	if [ ! -f boost_1_57_0/b2 ] ; then cd boost_1_57_0 && ./bootstrap.sh --prefix=$(TARGET) ; fi
 	cd boost_1_57_0 && ./bjam include=/usr/lib && ./b2 -j$(JOBS) variant=release link=shared threading=multi runtime-link=shared toolset=gcc --without=graph --without-graph_parallel --without-mpi install
+
 clean_boost:
 	cd boost_1_57_0 && rm -rf ./b2 ./bin.v2 ./bjam ./bootstrap.log ./project-config.jam ./tools/build/v2/engine/bootstrap/ ./tools/build/v2/engine/bin.linuxx86_64/
 
@@ -29,7 +40,6 @@ install_snappy:
 
 install_protobuf:
 	cd protobuf && ./autogen.sh && ./configure --prefix $(TARGET) && make install
-
 
 DISABLE_SSE42 ?= 0
 ifneq ($(DISABLE_SSE42),0)
