@@ -3,10 +3,10 @@
 TARGET?=$(HOME)/local
 
 # Determines the number of parallel jobs that will be used to build each of the submodules
-JOBS?=4
+JOBS?=8
 
 #determine if node js is used, if using ubuntu 14 it should be disabled
-NODEJS_ENABLED := 1
+NODEJS_ENABLED := 0
 
 all: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_zookeeper install_redis
 
