@@ -6,6 +6,13 @@ After cloning run:
 
     git submodule update --init && make
 
+# Building on Ubuntu 14.04 #
+
+To build on Ubuntu 14.04 you will have to disable nodejs by building using
+the NODEJS_ENABLED flag set to 0. The command would then be:
+
+    make NODEJS_ENABLED=0
+
 ## Troubleshooting ##
 
 ### GCC Internal Compiler Errors ###
