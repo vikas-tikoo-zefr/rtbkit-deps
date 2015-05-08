@@ -1,6 +1,7 @@
 
 # Determine where the install directory is located.
 TARGET?=$(HOME)/local
+SHELL:=/bin/bash
 
 # Determines the number of parallel jobs that will be used to build each of the submodules
 JOBS?=8
@@ -67,7 +68,8 @@ install_curlpp:
 	echo '#include "curlpp/config.h"' > $(TARGET)/include/curlpp/internal/global.h
 
 install_zookeeper:
-	cd zookeeper && (ulimit -v unlimited; JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/ ant compile) && cd src/c && autoreconf -if && ./configure --prefix $(TARGET) && make -j$(JOBS) -k install && make doxygen-doc && rm -f ~/local/bin/zookeeper && cd ../.. && ln -s `pwd` ~/local/bin/zookeeper
+	cd zookeeper && (ulimit -v unlimited; JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/ ant compile) && cd src/c && autoreconf -if && ./configure --prefix $(TARGET) && make -j$(JOBS) -k install && make doxygen-doc
+	install -d $(TARGET)/bin/zookeeper && rm -rf $(TARGET)/bin/zookeeper/* && cp -a zookeeper/{bin,build,conf,docs} $(TARGET)/bin/zookeeper/
 
 install_redis:
 	cd redis && make -j$(JOBS) -k PREFIX=$(TARGET) install
