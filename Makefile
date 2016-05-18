@@ -3,6 +3,10 @@
 TARGET?=$(HOME)/local
 GCC ?= gcc
 GXX ?= g++
+GCC_MAJOR_VERSION := $(shell $(GCC) -dumpversion | cut -d'.' -f1)
+GCC_MINOR_VERSION := $(shell $(GCC) -dumpversion | cut -d'.' -f2)
+GXX_MAJOR_VERSION := $(shell $(GXX) -dumpversion | cut -d'.' -f1)
+GXX_MINOR_VERSION := $(shell $(GXX) -dumpversion | cut -d'.' -f2)
 CC  = "ccache $(GCC)"
 CXX = "ccache $(GXX)"
 SHELL:=/bin/bash
@@ -125,9 +129,15 @@ install_redis:
 	CXX=$(CXX) CC=$(CC) PREFIX=$(TARGET) make -j$(JOBS) -k install
 
 install_pistache:
-	cd pistache; \
-	cmake -DCMAKE_CXX_COMPILER=$(GXX) -DCMAKE_C_COMPILER=$(GCC) -DCMAKE_INSTALL_PREFIX=$(TARGET) ; \
-	make -j$(JOBS) -k install
+	if [ \( $(GCC_MAJOR_VERSION) -gt 4 -o $(GCC_MAJOR_VERSION) -eq 4 -a $(GCC_MINOR_VERSION) -gt 6 \) -a \
+		 \( $(GXX_MAJOR_VERSION) -gt 4 -o $(GXX_MAJOR_VERSION) -eq 4 -a $(GCC_MINOR_VERSION) -gt 6 \) ]; \
+	then \
+		cd pistache; \
+		cmake -DCMAKE_CXX_COMPILER=$(GXX) -DCMAKE_C_COMPILER=$(GCC) ; \
+		make DESTDIR=$(TARGET) -j$(JOBS) -k install; \
+	else \
+		echo "pistache disabled"; \
+	fi
 
 install_cairomm:
 	cd cairomm; \
@@ -143,6 +153,8 @@ test-deploy:
 	@echo "HOME=$(HOME)"
 	@echo "TARGET=$(TARGET)"
 	@echo "GCC=$(GCC) GXX=$(GXX) CC=$(CC) CXX=$(CXX)"
+	@echo "GCC_VERSION= $(GCC_MAJOR_VERSION).$(GCC_MINOR_VERSION)"
+	@echo "GXX_VERSION= $(GXX_MAJOR_VERSION).$(GXX_MINOR_VERSION)"
 	@echo
 	@env | sort
 	@echo "=== test-deploy ==="
