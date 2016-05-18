@@ -40,3 +40,6 @@
 [submodule "curlpp"]
 	path = curlpp
 	url = https://github.com/mikeburkat/curlpp.git
+[submodule "pistache"]
+	path = pistache
+	url = git@github.com:oktal/pistache.git
