@@ -116,8 +116,20 @@ install_pistache:
 		 \( $(GXX_MAJOR_VERSION) -gt 4 -o $(GXX_MAJOR_VERSION) -eq 4 -a $(GCC_MINOR_VERSION) -gt 6 \) ]; \
 	then \
 		cd pistache; \
-		cmake -DCMAKE_CXX_COMPILER=$(GXX) -DCMAKE_C_COMPILER=$(GCC) ; \
+		cmake -DCMAKE_CXX_COMPILER=$(GXX) -DCMAKE_C_COMPILER=$(GCC); \
 		make DESTDIR=$(TARGET) -j$(JOBS) -k install; \
+		if [ -d $(TARGET)/usr/local/include/pistache ]; \
+		then \
+			if [ ! -d $(TARGET)/include/pistache ]; then mkdir -p $(TARGET)/include/pistache; fi; \
+			cp $(TARGET)/usr/local/include/pistache/* $(TARGET)/include/pistache/; \
+			rm -rf $(TARGET)/usr/local/include/pistache; \
+		fi; \
+		if [ -d $(TARGET)/usr/local/lib ]; \
+		then \
+			if [ ! -d $(TARGET)/lib ]; then mkdir -p $(TARGET)/lib; fi; \
+			cp $(TARGET)/usr/local/lib/* $(TARGET)/lib/; \
+			rm -rf $(TARGET)/usr/local/lib; \
+		fi; \
 	else \
 		echo "pistache disabled"; \
 	fi
