@@ -34,12 +34,6 @@
 [submodule "cairomm"]
 	path = cairomm
 	url = git://git.cairographics.org/git/cairomm
-[submodule "curl"]
-	path = curl
-	url = https://github.com/mikeburkat/curl.git
-[submodule "curlpp"]
-	path = curlpp
-	url = https://github.com/mikeburkat/curlpp.git
 [submodule "pistache"]
 	path = pistache
 	url = git@github.com:oktal/pistache.git

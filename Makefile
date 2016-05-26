@@ -17,9 +17,9 @@ JOBS?=8
 #determine if node js is used, if using ubuntu 14 it should be disabled
 NODEJS_ENABLED := 0
 
-all: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_zookeeper install_redis install_pistache
+all: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_protobuf install_zookeeper install_redis install_pistache
 
-.PHONY: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_zookeeper install_redis install_pistache
+.PHONY: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_protobuf install_zookeeper install_redis install_pistache
 
 install_node:
 	if [ $(NODEJS_ENABLED) = 1 ]; \
@@ -94,23 +94,6 @@ install_libssh2:
 	CXX=$(CXX) CC=$(CC) ./configure --prefix $(TARGET); \
 	make -j$(JOBS) -k; \
 	make install
-
-install_libcurl:
-	cd curl; \
-	./buildconf; \
-	CXX=$(CXX) CC=$(CC) ./configure --prefix $(TARGET) --with-libssh2=$(TARGET); \
-	make -j$(JOBS) -k; \
-	make install
-
-install_curlpp:
-	cd curlpp; \
-	./autogen.sh; \
-	CXX=$(CXX) CXXFLAGS="-I$(TARGET)/include -Wno-unused-function" CFLAGS="-I$(TARGET)/include" CC=$(CC) ./configure --prefix $(TARGET) --with-curl=$(TARGET) --with-boost=$(TARGET); \
-	make -j$(JOBS) -k; \
-	make install
-	rm -f $(TARGET)/include/curlpp/config.win32.h
-	cp curlpp/include/curlpp/config.h $(TARGET)/include/curlpp/config.h
-	echo '#include "curlpp/config.h"' > $(TARGET)/include/curlpp/internal/global.h
 
 install_zookeeper:
 	cd zookeeper; \
