@@ -36,4 +36,4 @@
 	url = git://git.cairographics.org/git/cairomm
 [submodule "pistache"]
 	path = pistache
-	url = git@github.com:oktal/pistache.git
+	url = https://github.com/oktal/pistache.git
