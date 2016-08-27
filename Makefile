@@ -122,7 +122,7 @@ install_pistache:
 		if [ -s Makefile ]; then rm Makefile; fi; \
 		if [ -s CTestTestfile.cmake ]; then rm -rf CTestTestfile.cmake; fi; \
 		if [ -s cmake_install.cmake ]; then rm cmake_install.cmake; fi; \
-		cmake -DCMAKE_INSTALL_PREFIX=$(TARGET) -DCMAKE_CXX_COMPILER=$(GXX) -DCMAKE_C_COMPILER=$(GCC); \
+		cmake -DCMAKE_INSTALL_PREFIX=$(TARGET) -DCMAKE_CXX_COMPILER=$(GXX) -DCMAKE_C_COMPILER=$(GCC) -DCMAKE_BUILD_TYPE=Debug; \
 		make -j$(JOBS) -k install; \
 	else \
 		echo "pistache disabled"; \
