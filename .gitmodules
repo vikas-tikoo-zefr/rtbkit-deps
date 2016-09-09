@@ -16,12 +16,6 @@
 [submodule "node"]
 	path = node
 	url = https://github.com/datacratic/node.git
-[submodule "protobuf"]
-	path = protobuf
-	url = https://github.com/datacratic/protobuf.git
-[submodule "redis"]
-	path = redis
-	url = https://github.com/datacratic/redis.git
 [submodule "snappy"]
 	path = snappy
 	url = https://github.com/mikeburkat/snappy.git
@@ -37,3 +31,9 @@
 [submodule "pistache"]
 	path = pistache
 	url = https://github.com/oktal/pistache.git
+[submodule "protobuf"]
+	path = protobuf
+	url = git@github.com:google/protobuf
+[submodule "redis"]
+	path = redis
+	url = git@github.com:antirez/redis.git
