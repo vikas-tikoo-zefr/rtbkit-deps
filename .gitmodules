@@ -33,7 +33,7 @@
 	url = https://github.com/oktal/pistache.git
 [submodule "protobuf"]
 	path = protobuf
-	url = git@github.com:google/protobuf.git
+	url = https://github.com/google/protobuf.git
 [submodule "redis"]
 	path = redis
 	url = git@github.com:antirez/redis.git
